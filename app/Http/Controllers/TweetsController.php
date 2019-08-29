@@ -5,18 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Tweet;
-use App\Models\Favorite;
 use App\Models\Comment;
 use App\Models\Follower;
 
 class TweetsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Tweet $tweet, Favorite $favorite, Follower $follower)
+    public function index(Tweet $tweet, Follower $follower)
     {
         $user = auth()->user();
         $follow_ids = $follower->followingIds($user->id);
@@ -25,9 +19,9 @@ class TweetsController extends Controller
                 $following_ids[] = $follow_id->followed_id;
             }
         } else {
-            $following_ids = null;
+            $following_ids = [];
         }
-        
+
         $timelines = $tweet->getTimelines($user->id, $following_ids);
 
         return view('tweets.index', [

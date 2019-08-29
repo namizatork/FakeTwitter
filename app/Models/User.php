@@ -42,21 +42,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function tweets()
-    {
-        return $this->hasMany(Tweet::class);
-    }
-
-    public function favorites()
-    {
-        return $this->hasMany(Favorite::class);
-    }
-
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
-
     public function followers()
     {
         return $this->belongsToMany(self::class, 'followers', 'followed_id', 'following_id');
