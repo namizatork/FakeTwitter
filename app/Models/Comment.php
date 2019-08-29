@@ -17,12 +17,7 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function tweets()
-    {
-        $this->belongsTo(Tweet::class);
-    }
-
+    
     public function getComments(Int $tweet_id)
     {
         return $this->where('tweet_id', $tweet_id)->get();

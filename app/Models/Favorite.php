@@ -7,16 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Favorite extends Model
 {
     public $timestamps = false;
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function tweets()
-    {
-        return $this->belongsTo(Tweet::class);
-    }
     
     // いいねしているか
     public function isFavorite(Int $user_id, Int $tweet_id) 
