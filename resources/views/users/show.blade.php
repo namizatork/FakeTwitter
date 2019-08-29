@@ -102,14 +102,14 @@
                                         @csrf
                                         
                                         <input type="hidden" name="tweet_id" value="{{ $timeline->id }}">
-                                        <button type="submit" class="btn border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
+                                        <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
                                     </form>
                                 @else
                                     <form method="POST"action="{{ url('favorites/' .array_column($timeline->favorites->toArray(), 'id', 'user_id')[Auth::user()->id]) }}" class="mb-0">
                                         @csrf
                                         @method('DELETE')
 
-                                        <button type="submit" class="btn border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
+                                        <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
                                     </form>
                                 @endif
                                 <p class="mb-0 text-secondary">{{ count($timeline->favorites) }}</p>
